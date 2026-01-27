@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nike - Home</title>
+<style>
+/* BODY & BACKGROUND */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url("data:image/jpeg;base64,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")  no-repeat center center fixed;
+    background-size: cover;  /* fills screen */
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+/* NAVBAR */
+nav {
+    background: linear-gradient(to right, #0f2027, #2c5364);
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffcc00;
+}
+
+
+.hero {
+    background-image: url("{% static 'nike/images.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+}
+
+.hero h1 {
+    font-size: 50px;
+    margin: 0;
+}
+
+.hero p {
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+/* SECTION TITLES */
+.section-title {
+    text-align: center;
+    margin: 40px 0 20px;
+    font-size: 30px;
+    color: #0f2027;
+}
+
+/* PRODUCT GRID */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 0 20px 40px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 220px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card h3 {
+    margin: 10px 0 5px;
+    font-size: 18px;
+}
+
+.card p {
+    margin: 0 0 10px;
+    color: #555;
+}
+
+.card a {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 8px 15px;
+    background-color: #0f2027;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.card a:hover {
+    background-color: #ffcc00;
+}
+
+/* FOOTER */
+footer {
+    background: linear-gradient(to right, #0f2027, #2c5364);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'product_list' %}">Products</a>
+    <a href="{% url 'category_list' %}">Categories</a>
+    <a href="{% url 'news_list' %}">News</a>
+    <a href="{% url 'user_list' %}">Users</a>
+    <a href="{% url 'order_list' %}">Orders</a>
+</nav>
+
+<div class="hero">
+    <div>
+        <h1>Nike</h1>
+        <p>Your favorite sports products and news!</p>
+    </div>
+</div>
+
+<h2 class="section-title">Sample Products</h2>
+<div class="grid">
+    {% for product in products %}
+    <div class="card">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <h3>{{ product.name }}</h3>
+        <p>${{ product.price }}</p>
+        <a href="{% url 'product_detail' product.id %}">View Details</a>
+    </div>
+    {% endfor %}
+</div>
+
+<footer>
+    &copy; 2026 Nike Project
+</footer>
+
+</body>
+</html>

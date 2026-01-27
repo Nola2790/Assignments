@@ -1,0 +1,63 @@
+from django.urls import path
+from .views import (
+    home,
+    product_list,
+    product_detail,
+    category_list,
+    category_detail,
+    user_list,
+    user_detail,
+    user_create,
+    user_update,
+    user_delete,
+    order_list,
+    order_detail,
+    order_create,
+    order_update,
+    order_delete,
+    news_list,
+    news_detail,
+    news_create,
+    news_update,
+    news_delete,
+    product_create,
+    product_update,
+    product_delete,
+    category_create,
+    category_update,
+    category_delete,
+)
+
+urlpatterns = [
+    path('', home, name='home'),
+
+    path('products/', product_list, name='product_list'),
+    path('products/<int:id>/', product_detail, name='product_detail'),
+    path('products/add/', product_create, name='product_create'),
+    path('products/<int:id>/update/', product_update, name='product_update'),
+    path('products/<int:id>/delete/', product_delete, name='product_delete'),
+
+    path('categories/', category_list, name='category_list'),
+    path('categories/<int:id>/', category_detail, name='category_detail'),
+    path('categories/add/', category_create, name='category_create'),
+    path('categories/<int:id>/update/', category_update, name='category_update'),
+    path('categories/<int:id>/delete/', category_delete, name='category_delete'),
+
+    path('users/', user_list, name='user_list'),
+    path('users/<int:id>/', user_detail, name='user_detail'),
+    path('users/add/', user_create, name='user_create'),
+    path('users/<int:id>/update/', user_update, name='user_update'),
+    path('users/<int:id>/delete/', user_delete, name='user_delete'),
+
+    path('orders/', order_list, name='order_list'),
+    path('orders/<int:id>/', order_detail, name='order_detail'),
+    path('orders/add/', order_create, name='order_create'),
+    path('orders/<int:id>/update/', order_update, name='order_update'),
+    path('orders/<int:id>/delete/', order_delete, name='order_delete'),
+
+    path('news/', news_list, name='news_list'),
+    path('news/<int:id>/', news_detail, name='news_detail'),
+    path('news/add/', news_create, name='news_create'),
+    path('news/<int:id>/update/', news_update, name='news_update'),
+    path('news/<int:id>/delete/', news_delete, name='news_delete'),
+]

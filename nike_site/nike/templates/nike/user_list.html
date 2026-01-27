@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nike - Users</title>
+    <style>
+        body {font-family: Arial, sans-serif; margin:0; background:#f5f5f5;}
+        nav {background:#111; padding:15px;}
+        nav a {color:#fff; margin:0 15px; text-decoration:none; font-weight:bold;}
+        nav a:hover {color:#ff5500;}
+        h1 {text-align:center; margin:30px 0; color:#111;}
+        table {width:80%; margin:0 auto 40px; border-collapse: collapse; background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+        th, td {padding:12px; text-align:left; border-bottom:1px solid #ddd;}
+        th {background:#111; color:#fff;}
+        tr:hover {background:#f1f1f1;}
+        footer {background:#111; color:#fff; text-align:center; padding:15px; margin-top:40px;}
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'product_list' %}">Products</a>
+    <a href="{% url 'category_list' %}">Categories</a>
+    <a href="{% url 'news_list' %}">News</a>
+    <a href="{% url 'user_list' %}">Users</a>
+    <a href="{% url 'order_list' %}">Orders</a>
+</nav>
+
+<h2>User List</h2>
+<a href="{% url 'user_create' %}">Add User</a>
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+            <a href="{% url 'user_detail' user.id %}">View</a> |
+            <a href="{% url 'user_update' user.id %}">Edit</a> |
+            <a href="{% url 'user_delete' user.id %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

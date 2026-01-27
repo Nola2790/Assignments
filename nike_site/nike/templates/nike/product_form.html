@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if product %}Edit Product{% else %}Create Product{% endif %} - Nike</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f5f5f5;
+        }
+
+        nav {
+            background: #111;
+            padding: 15px 30px;
+        }
+
+        nav a {
+            color: #fff;
+            margin-right: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ff5500;
+        }
+
+        .container {
+            width: 500px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #111;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #111;
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: #111;
+            color: #fff;
+            font-weight: bold;
+            font-size: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #ff5500;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background: #111;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'product_list' %}">Back to Product List</a>
+</nav>
+
+<div class="container">
+    <h2>{% if product %}Edit Product{% else %}Create Product{% endif %}</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label>Name:</label>
+        <input type="text" name="name" value="{{ product.name|default:'' }}" required>
+
+        <label>Description:</label>
+        <textarea name="description" required>{{ product.description|default:'' }}</textarea>
+
+        <label>Price:</label>
+        <input type="number" name="price" value="{{ product.price|default:'' }}" required>
+
+        <label>Image:</label>
+        <input type="file" name="image">
+
+        <label>Stock:</label>
+        <input type="number" name="stock" value="{{ product.stock|default:0 }}" required>
+
+        <button type="submit">
+            {% if product %}Update Product{% else %}Create Product{% endif %}
+        </button>
+    </form>
+</div>
+
+<footer>
+    © 2026 Nike Admin Panel
+</footer>
+
+</body>
+</html>
