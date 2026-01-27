@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blood Donation Portal</title>
+
+<style>
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #e74c3c;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Navbar */
+.navbar {
+    margin-top: 10px;
+}
+
+.navbar a, .dropbtn {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: #c0392b;
+    border-radius: 5px;
+}
+
+/* Dropdown */
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    text-align: left;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Hero Section */
+.hero {
+    background: url('https://images.unsplash.com/photo-1588776814546-2b63a20f9b06?auto=format&fit=crop&w=1080&q=80') no-repeat center center;
+    background-size: cover;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-shadow: 1px 1px 5px #000;
+}
+
+.hero h1 {
+    font-size: 3em;
+}
+
+/* Content */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h2 {
+    color: #e74c3c;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+ul li a {
+    text-decoration: none;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 40px;
+}
+
+footer a {
+    color: #ffb3a7;
+    text-decoration: none;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <h1>Blood Donation Portal</h1>
+    <nav class="navbar">
+
+        <a href="{% url 'home' %}">Home</a>
+         <a href="{% url 'contact' %}">Contact</a>
+          <a href="{% url 'about' %}">About</a>
+
+        <div class="dropdown">
+            <button class="dropbtn">Menu ▾</button>
+            <div class="dropdown-content">
+                <a href="{% url 'donor_list' %}">Donors</a>
+                <a href="{% url 'recipient_list' %}">Recipients</a>
+                <a href="{% url 'branch_list' %}">Branches</a>
+                <a href="{% url 'location_list' %}">Locations</a>
+                <a href="{% url 'event_list' %}">Events</a>
+               
+               
+            </div>
+        </div>
+
+    </nav>
+</header>
+
+<div class="hero">
+    <h1>Donate Blood, Save Lives</h1>
+</div>
+
+<div class="container">
+    <h2>Welcome</h2>
+    <p>
+        Our portal connects donors with recipients and organizes regular blood donation 
+        events across multiple locations. Join us and make a difference today!
+    </p>
+
+    <h2>Upcoming Events</h2>
+    <ul>
+        {% for event in events %}
+            <li>
+                <a href="{% url 'event_detail' event.id %}">
+                    {{ event.name }}
+                </a>
+                on {{ event.date }}
+            </li>
+        {% empty %}
+            <li>No upcoming events.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Become a Donor</h2>
+    <p>Register as a donor and help save lives. Every donation counts!</p>
+</div>
+
+<footer>
+    &copy; 2026 Blood Donation Portal | 
+    <a href="{% url 'contact' %}">Contact Us</a>
+</footer>
+
+</body>
+</html>

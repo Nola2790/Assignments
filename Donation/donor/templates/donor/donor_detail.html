@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Donor Detail</title>
+</head>
+<body>
+    <h1>{{ donor.first_name }} {{ donor.last_name }}</h1>
+    <p><strong>Blood Type:</strong> {{ donor.blood_type }}</p>
+    <p><strong>Date of Birth:</strong> {{ donor.date_of_birth }}</p>
+    <p><strong>Phone:</strong> {{ donor.phone_number }}</p>
+    <p><strong>Email:</strong> {{ donor.email }}</p>
+
+    {% if donor.profile_picture %}
+        <img src="{{ donor.profile_picture.url }}" alt="Profile Picture" width="200">
+    {% endif %}
+
+    <h2>Feedback</h2>
+    <ul>
+        {% for feedback in feedbacks %}
+            <li>{{ feedback.message }} (Rating: {{ feedback.rating }})</li>
+        {% empty %}
+            <li>No feedback yet.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'donor_update' donor.id %}">Edit Donor</a> |
+    <a href="{% url 'donor_delete' donor.id %}">Delete Donor</a> |
+    <a href="{% url 'donor_list' %}">Back to List</a>
+</body>
+</html>

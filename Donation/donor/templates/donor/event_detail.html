@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Detail</title>
+</head>
+<body>
+    <h1>{{ event.name }}</h1>
+    <p><strong>Date:</strong> {{ event.date }}</p>
+    <p><strong>Location:</strong> {{ event.location }}</p>
+    <p><strong>Description:</strong> {{ event.description }}</p>
+
+    {% if event.event_image %}
+        <img src="{{ event.event_image.url }}" alt="{{ event.name }}" width="300">
+    {% endif %}
+
+    <a href="{% url 'event_update' event.id %}">Edit</a> |
+    <a href="{% url 'event_delete' event.id %}">Delete</a> |
+    <a href="{% url 'event_list' %}">Back to List</a>
+</body>
+</html>

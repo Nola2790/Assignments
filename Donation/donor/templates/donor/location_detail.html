@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Location Detail</title>
+</head>
+<body>
+    <h1>{{ location.name }}</h1>
+    <p><strong>Address:</strong> {{ location.address }}</p>
+    <p><strong>Contact Number:</strong> {{ location.contact_number }}</p>
+
+    <a href="{% url 'location_update' location.id %}">Edit</a> |
+    <a href="{% url 'location_delete' location.id %}">Delete</a> |
+    <a href="{% url 'location_list' %}">Back to List</a>
+</body>
+</html>

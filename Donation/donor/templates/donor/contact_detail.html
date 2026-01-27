@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Detail</title>
+</head>
+<body>
+    <h1>{{ contact.name }}</h1>
+    <p>Email: {{ contact.email }}</p>
+    <p>Message: {{ contact.message }}</p>
+    <a href="{% url 'contact_update' contact.id %}">Edit</a>
+    <a href="{% url 'contact_list' %}">Back to Contact List</a>
+</body>
+</html>

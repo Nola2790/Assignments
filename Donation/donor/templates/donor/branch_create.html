@@ -1,0 +1,31 @@
+<!-- donor/templates/donor/branch_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Branch</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create Branch</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Branch Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" class="form-control" id="location" name="location" required>
+            </div>
+            <div class="form-group">
+                <label for="contact_number">Contact Number:</label>
+                <input type="text" class="form-control" id="contact_number" name="contact_number" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Branch</button>
+        </form>
+        <a href="{% url 'branch_list' %}" class="btn btn-secondary mt-3">Back to List</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if donor %}Edit{% else %}Add{% endif %} Donor</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 12px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Form Container */
+.container {
+    max-width: 550px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+h2 {
+    text-align: center;
+    color: #e74c3c;
+    margin-bottom: 25px;
+}
+
+/* Inputs */
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #e74c3c;
+    outline: none;
+    box-shadow: 0 0 5px rgba(231,76,60,0.3);
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 25px;
+    border-radius: 6px;
+    border: none;
+    background: #e74c3c;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #c0392b;
+}
+
+/* Back link */
+a.cancel {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a.cancel:hover {
+    text-decoration: underline;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Blood Donation Portal</h1>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'donor_list' %}">Donors</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>{% if donor %}Edit{% else %}Add{% endif %} Donor</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label>First Name</label>
+        <input type="text" name="first_name"
+               value="{{ donor.first_name|default:'' }}" required>
+
+        <label>Last Name</label>
+        <input type="text" name="last_name"
+               value="{{ donor.last_name|default:'' }}" required>
+
+        <label>Blood Type</label>
+        <input type="text" name="blood_type"
+               value="{{ donor.blood_type|default:'' }}" required>
+
+        <label>Date of Birth</label>
+        <input type="date" name="date_of_birth"
+               value="{{ donor.date_of_birth|date:'Y-m-d'|default:'' }}" required>
+
+        <label>Phone Number</label>
+        <input type="text" name="phone_number"
+               value="{{ donor.phone_number|default:'' }}" required>
+
+        <label>Email</label>
+        <input type="email" name="email"
+               value="{{ donor.email|default:'' }}" required>
+
+        <label>Profile Picture</label>
+        <input type="file" name="profile_picture">
+
+        <button type="submit">
+            {% if donor %}Update Donor{% else %}Create Donor{% endif %}
+        </button>
+    </form>
+
+    <a href="{% url 'donor_list' %}" class="cancel">Back to List</a>
+</div>
+
+</body>
+</html>

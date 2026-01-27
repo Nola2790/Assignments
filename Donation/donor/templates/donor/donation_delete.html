@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Delete Donation</title>
+</head>
+<body>
+    <h1>Delete Donation</h1>
+    <p>Are you sure you want to delete the donation on "{{ donation.donation_date }}"?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Yes, delete it!</button>
+    </form>
+    <a href="{% url 'donation_list' %}">Cancel</a>
+</body>
+</html>

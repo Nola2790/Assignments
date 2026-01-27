@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if recipient %}Edit{% else %}Add{% endif %} Recipient</title>
+<style>
+body { font-family: Arial; background:#f8f9fa; margin:0; padding:0; }
+header { background:#e74c3c; color:white; padding:20px; text-align:center; }
+nav a { color:white; margin:0 10px; text-decoration:none; }
+nav a:hover { text-decoration:underline; }
+.container { max-width:500px; margin:40px auto; padding:20px; background:white; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+input, textarea, button { width:100%; padding:10px; margin:8px 0; border-radius:5px; border:1px solid #ccc; font-size:1em; }
+button { background:#e74c3c; color:white; border:none; cursor:pointer; }
+button:hover { background:#c0392b; }
+a.cancel { color:#e74c3c; text-decoration:none; display:inline-block; margin-top:10px; }
+a.cancel:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+<header>
+<h1>Blood Donation Portal</h1>
+<nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'recipient_list' %}">Recipients</a>
+</nav>
+</header>
+
+<div class="container">
+<h2>{% if recipient %}Edit{% else %}Add{% endif %} Recipient</h2>
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="first_name" placeholder="First Name" value="{{ recipient.first_name|default:'' }}">
+    <input type="text" name="last_name" placeholder="Last Name" value="{{ recipient.last_name|default:'' }}">
+    <input type="text" name="blood_type" placeholder="Blood Type" value="{{ recipient.blood_type|default:'' }}">
+    <input type="text" name="phone_number" placeholder="Phone Number" value="{{ recipient.phone_number|default:'' }}">
+    <input type="email" name="email" placeholder="Email" value="{{ recipient.email|default:'' }}">
+    <button type="submit">Submit</button>
+</form>
+<a href="{% url 'recipient_list' %}" class="cancel">Back to List</a>
+</div>
+</body>
+</html>

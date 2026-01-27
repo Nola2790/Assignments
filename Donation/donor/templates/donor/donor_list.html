@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Donor List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header class="bg-danger text-white text-center p-3">
+    <h1>Blood Donation Portal</h1>
+    <nav>
+        <a href="{% url 'home' %}" class="text-white mr-3">Home</a>
+        <a href="{% url 'donor_list' %}" class="text-white">Donors</a>
+    </nav>
+</header>
+<div class="container mt-4">
+    <h2>Donor List</h2>
+    <a href="{% url 'donor_create' %}" class="btn btn-danger mb-3">Add New Donor</a>
+    <ul class="list-group">
+        {% for donor in page_obj %}
+            <li class="list-group-item">
+                <a href="{% url 'donor_detail' donor.id %}">{{ donor.first_name }} {{ donor.last_name }}</a>
+                <a href="{% url 'donor_update' donor.id %}" class="ml-2 btn btn-sm btn-outline-primary">Edit</a>
+                <a href="{% url 'donor_delete' donor.id %}" class="ml-2 btn btn-sm btn-outline-danger">Delete</a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No donors found.</li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>

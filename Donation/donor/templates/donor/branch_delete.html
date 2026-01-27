@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Branch</title>
+</head>
+<body>
+    <h1>Delete Branch</h1>
+    <p>Are you sure you want to delete "{{ branch.name }}"?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+        <a href="{% url 'branch_list' %}">Cancel</a>
+    </form>
+</body>
+</html>

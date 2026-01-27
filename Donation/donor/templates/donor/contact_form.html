@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if contact %}Edit Contact{% else %}Add Contact{% endif %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #e74c3c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+        button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c0392b;
+        }
+        a.cancel {
+            display: inline-block;
+            margin-top: 10px;
+            color: #e74c3c;
+            text-decoration: none;
+        }
+        a.cancel:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Blood Donation Portal</h1>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'contact_list' %}">Contacts</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>{% if contact %}Edit Contact{% else %}Add Contact{% endif %}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" value="{{ contact.name if contact }}" placeholder="Name" required>
+        <input type="email" name="email" value="{{ contact.email if contact }}" placeholder="Email" required>
+        <textarea name="message" placeholder="Message" required>{{ contact.message if contact }}</textarea>
+        <button type="submit">{% if contact %}Update{% else %}Create{% endif %}</button>
+    </form>
+    <a href="{% url 'contact_list' %}" class="cancel">Cancel</a>
+</div>
+
+</body>
+</html>

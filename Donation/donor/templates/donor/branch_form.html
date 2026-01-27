@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if branch %}Edit{% else %}Add{% endif %} Branch</title>
+<style>
+    body { font-family: Arial, sans-serif; background: #f8f9fa; margin: 0; padding: 0; }
+    header { background: #e74c3c; color: white; padding: 20px; text-align: center; }
+    nav a { color: white; margin: 0 10px; text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+    .container { max-width: 500px; margin: 40px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    h2 { color: #e74c3c; text-align: center; margin-bottom: 20px; }
+    label { font-weight: bold; margin-top: 10px; display: block; }
+    input, button { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc; font-size: 1em; }
+    button { background: #e74c3c; color: white; border: none; cursor: pointer; margin-top: 15px; }
+    button:hover { background: #c0392b; }
+    a.cancel { color: #e74c3c; text-decoration: none; display: inline-block; margin-top: 10px; }
+    a.cancel:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<header>
+    <h1>Blood Donation Portal</h1>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'branch_list' %}">Branches</a>
+    </nav>
+</header>
+
+<div class="container">
+<h2>{% if branch %}Edit{% else %}Add{% endif %} Branch</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label for="name">Branch Name</label>
+    <input type="text" id="name" name="name" value="{{ branch.name|default:'' }}" placeholder="Enter branch name" required>
+
+    <label for="location">Location</label>
+    <input type="text" id="location" name="location" value="{{ branch.location|default:'' }}" placeholder="Enter location" required>
+
+    <label for="contact_number">Contact Number</label>
+    <input type="text" id="contact_number" name="contact_number" value="{{ branch.contact_number|default:'' }}" placeholder="Enter contact number" required>
+
+    <button type="submit">{% if branch %}Update Branch{% else %}Create Branch{% endif %}</button>
+</form>
+<a href="{% url 'branch_list' %}" class="cancel">Back to List</a>
+</div>
+</body>
+</html>

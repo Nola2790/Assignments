@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Branch Detail</title>
+</head>
+<body>
+    <h1>{{ branch.name }}</h1>
+    <p><strong>Location:</strong> {{ branch.location }}</p>
+    <p><strong>Contact Number:</strong> {{ branch.contact_number }}</p>
+
+    <a href="{% url 'branch_update' branch.id %}">Edit</a> |
+    <a href="{% url 'branch_delete' branch.id %}">Delete</a> |
+    <a href="{% url 'branch_list' %}">Back to List</a>
+</body>
+</html>

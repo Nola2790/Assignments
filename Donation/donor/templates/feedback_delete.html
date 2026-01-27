@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Feedback</title>
+</head>
+<body>
+    <h1>Delete Feedback</h1>
+    <p>Are you sure you want to delete feedback by "{{ feedback.donor.first_name }} {{ feedback.donor.last_name }}"?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+        <a href="{% url 'feedback_list' %}">Cancel</a>
+    </form>
+</body>
+</html>

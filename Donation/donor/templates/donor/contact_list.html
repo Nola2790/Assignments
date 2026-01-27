@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #e74c3c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            background: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        ul li a {
+            margin-right: 10px;
+            color: #e74c3c;
+            text-decoration: none;
+        }
+        ul li a:hover {
+            text-decoration: underline;
+        }
+        .pagination {
+            margin-top: 20px;
+        }
+        .pagination a {
+            margin-right: 10px;
+            color: #e74c3c;
+            text-decoration: none;
+        }
+        .pagination span {
+            margin-right: 10px;
+        }
+        .add-new {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .add-new:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Blood Donation Portal</h1>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'contact_list' %}">Contacts</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Contact List</h2>
+    <ul>
+        {% for contact in page_obj %}
+            <li>
+                <a href="{% url 'contact_detail' contact.id %}">{{ contact.name }}</a>
+                <a href="{% url 'contact_update' contact.id %}">Edit</a>
+                <a href="{% url 'contact_delete' contact.id %}">Delete</a>
+            </li>
+        {% empty %}
+            <li>No contacts available.</li>
+        {% endfor %}
+    </ul>
+
+    <div class="pagination">
+        <span>Page: {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+
+    <a href="{% url 'contact_create' %}" class="add-new">Add New Contact</a>
+</div>
+
+</body>
+</html>
