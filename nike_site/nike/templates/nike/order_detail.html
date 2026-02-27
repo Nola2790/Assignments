@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Detail - Nike</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f5f5f5;
+        }
+
+        nav {
+            background: #111;
+            padding: 15px 30px;
+        }
+
+        nav a {
+            color: #fff;
+            margin-right: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ff5500;
+        }
+
+        .container {
+            width: 500px;
+            margin: 60px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #111;
+        }
+
+        .detail-item {
+            margin: 15px 0;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .detail-item strong {
+            display: inline-block;
+            width: 140px;
+            color: #333;
+        }
+
+        .status {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background: #111;
+            color: #fff;
+            display: inline-block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background: #111;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'order_list' %}">Back to Order List</a>
+</nav>
+
+<div class="container">
+    <h2>Order Details</h2>
+
+    <div class="detail-item">
+        <strong>Order ID:</strong> {{ order.id }}
+    </div>
+
+    <div class="detail-item">
+        <strong>User:</strong> {{ order.user.username }}
+    </div>
+
+    <div class="detail-item">
+        <strong>Total Amount:</strong> ${{ order.total_amount }}
+    </div>
+
+    <div class="detail-item">
+        <strong>Status:</strong> 
+        <span class="status">{{ order.status }}</span>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Nike Admin Panel
+</footer>
+
+</body>
+</html>

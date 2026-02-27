@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Order - Nike</title>
+</head>
+<body>
+
+<nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'order_list' %}">Back to Order List</a>
+</nav>
+
+<h2>Edit Order</h2>
+<form method="post">
+    {% csrf_token %}
+
+    <label for="user">User:</label>
+    <select name="user_id" required>
+        {% for user in users %}
+            <option value="{{ user.id }}" {% if order.user.id == user.id %}selected{% endif %}>{{ user.username }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="total_amount">Total Amount:</label>
+    <input type="number" name="total_amount" value="{{ order.total_amount }}" required>
+
+    <label for="status">Status:</label>
+    <input type="text" name="status" value="{{ order.status }}" required>
+
+    <button type="submit">Update Order</button>
+</form>
+
+</body>
+</html>
